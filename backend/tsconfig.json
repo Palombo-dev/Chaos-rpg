@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "target": "ES2020",                  // Versão do JavaScript gerado
+      "module": "commonjs",                // Sistema de módulos
+      "outDir": "./dist",                  // Pasta para os arquivos compilados
+      "rootDir": "./src",                  // Diretório raiz do código TypeScript
+      "strict": true,                      // Ativar modo estrito
+      "esModuleInterop": true,             // Melhor interoperabilidade com módulos ES6
+      "skipLibCheck": true,                // Ignorar checagem de tipos em bibliotecas de terceiros
+      "forceConsistentCasingInFileNames": true // Casing consistente nos arquivos
+    },
+    "include": ["src/**/*"],               // Incluir todos os arquivos na pasta src
+    "exclude": ["node_modules"]            // Excluir a pasta node_modules
+  }
+  
