@@ -1,10 +1,12 @@
 import * as admin from 'firebase-admin';
 import * as dotenv from 'dotenv';
+const serviceAccount = require('./firebaseServiceAccount.json');
+
 
 dotenv.config();  // Carregar variáveis de ambiente
 
 // Importa a chave de serviço
-const serviceAccount = require(process.env.FIREBASE_CREDENTIALS_PATH || '');
+
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
