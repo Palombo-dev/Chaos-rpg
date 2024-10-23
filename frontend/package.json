@@ -1,31 +1,38 @@
 {
-    "name": "chaos-rpg",
-    "version": "1.0.0",
-    "description": "Um RPG em desenvolvimento com React e Bootstrap.",
-    "main": "index.js",
-    "scripts": {
-      "start": "react-scripts start",
-      "build": "react-scripts build",
-      "test": "react-scripts test",
-      "eject": "react-scripts eject"
-    },
-    "keywords": ["RPG", "React", "Bootstrap"],
-    "author": "Palombo",
-    "license": "MIT",
-    "dependencies": {
-      "axios": "^1.0.0",
-      "formik": "^2.2.6",
-      "react": "^18.0.0",
-      "react-bootstrap": "^2.0.0",
-      "react-dom": "^18.0.0",
-      "react-icons": "^4.3.1",
-      "react-modal": "^3.14.3",
-      "react-router-dom": "^6.0.0",
-      "styled-components": "^5.3.3",
-      "yup": "^0.32.9"
-    },
-    "devDependencies": {
-      "react-scripts": "^5.0.0"
-    }
+  "name": "chaos-rpg",
+  "version": "1.0.0",
+  "description": "Um RPG em desenvolvimento com React e Bootstrap.",
+  "main": "index.tsx",
+  "scripts": {
+    "start": "tsc && concurrently \"npm run server\" \"npm run client\"",
+    "build": "tsc && npm run build:client",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "client": "react-scripts start",
+    "build:client": "react-scripts build",
+    "server": "node server.js"
+  },
+  "keywords": ["RPG", "React", "Bootstrap"],
+  "author": "Palombo",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.0.0",
+    "formik": "^2.2.6",
+    "react": "^18.0.0",
+    "react-bootstrap": "^2.0.0",
+    "react-dom": "^18.0.0",
+    "react-icons": "^4.3.1",
+    "react-modal": "^3.14.3",
+    "react-router-dom": "^6.0.0",
+    "styled-components": "^5.3.3",
+    "yup": "^0.32.9"
+  },
+  "devDependencies": {
+    "react-scripts": "^5.0.0",
+    "typescript": "^5.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@types/react-router-dom": "^6.0.0",
+    "concurrently": "^7.0.0"
   }
-  
+}
