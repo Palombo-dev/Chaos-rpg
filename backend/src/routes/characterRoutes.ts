@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { createCharacter, getCharacters, getCharacterById, updateCharacter, deleteCharacter } from '../controllers/characterController';
+//import { authMiddleware } from '../middlewares/authMiddleware';
 
 const router = Router();
 
