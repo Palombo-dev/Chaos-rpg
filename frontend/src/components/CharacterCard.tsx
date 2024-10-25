@@ -5,7 +5,7 @@ import CharacterModal from './CharacterModal'; // Certifique-se de importar o mo
 
 interface CharacterProps {
   character: {
-    id: number;
+    id: string; 
     name: string;
     image: string;
     health: { current: number; max: number };
@@ -40,7 +40,13 @@ const CharacterCard: React.FC<CharacterProps> = ({ character }) => {
       <CharacterModal
         show={modalShow}
         onHide={handleCloseModal}
-        character={character}
+        character={{
+          id: character.id, // Usando id como number
+          name: character.name,
+          health: character.health,
+          stamina: character.stamina,
+          mana: character.mana,
+        }}
       />
     </div>
   );

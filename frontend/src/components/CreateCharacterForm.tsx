@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom'; // Importando o hook de navegaç
 
 interface CreateCharacterFormProps {
   onSubmit?: (character: {
-    id: string;
     name: string;
     image: string;
     attributes: {
@@ -45,7 +44,6 @@ const CreateCharacterForm: React.FC<CreateCharacterFormProps> = ({ onSubmit }) =
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     const newCharacter = {
-      id: '', // Você pode gerar ou deixar vazio, dependendo da lógica
       name,
       image,
       attributes,

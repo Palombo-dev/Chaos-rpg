@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
 interface CharacterModalProps {
   show: boolean;
   onHide: () => void;
   character: {
-    id: number;
+    id: string; // Alterado para string
     name: string;
     health: { current: number; max: number };
     stamina: { current: number; max: number };
@@ -19,6 +19,13 @@ const CharacterModal: React.FC<CharacterModalProps> = ({ show, onHide, character
   const [stamina, setStamina] = useState(character.stamina.current);
   const [mana, setMana] = useState(character.mana.current);
 
+  // Efeito para atualizar os estados quando o character muda
+  useEffect(() => {
+    setHealth(character.health.current);
+    setStamina(character.stamina.current);
+    setMana(character.mana.current);
+  }, [character]);
+
   const handleSaveChanges = async () => {
     const updatedCharacter = {
       health: { current: health, max: character.health.max }, // Mantenha o maximo original
@@ -27,7 +34,7 @@ const CharacterModal: React.FC<CharacterModalProps> = ({ show, onHide, character
     };
 
     try {
-      const response = await fetch(`http://localhost5000/api/characters/${character.id}`, {
+      const response = await fetch(`http://localhost:5000/api/characters/${character.id}`, { // Correção na URL
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
