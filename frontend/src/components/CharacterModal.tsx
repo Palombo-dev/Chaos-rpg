@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
 interface CharacterModalProps {
-  show: boolean;
-  onHide: () => void;
+  show: boolean; // Controla a visibilidade do modal
+  onHide: () => void; // Função para fechar o modal
   character: {
-    id: string; // Alterado para string
-    name: string;
-    health: { current: number; max: number };
-    stamina: { current: number; max: number };
-    mana: { current: number; max: number };
+    id: string; // ID do personagem
+    name: string; // Nome do personagem
+    health: { current: number; max: number }; // Estrutura para saúde
+    stamina: { current: number; max: number }; // Estrutura para estamina
+    mana: { current: number; max: number }; // Estrutura para mana
   };
 }
 
@@ -28,13 +28,13 @@ const CharacterModal: React.FC<CharacterModalProps> = ({ show, onHide, character
 
   const handleSaveChanges = async () => {
     const updatedCharacter = {
-      health: { current: health, max: character.health.max }, // Mantenha o maximo original
+      health: { current: health, max: character.health.max }, // Mantém o máximo original
       stamina: { current: stamina, max: character.stamina.max },
       mana: { current: mana, max: character.mana.max },
     };
 
     try {
-      const response = await fetch(`http://localhost:5000/api/characters/${character.id}`, { // Correção na URL
+      const response = await fetch(`http://localhost:5000/api/characters/${character.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -46,6 +46,7 @@ const CharacterModal: React.FC<CharacterModalProps> = ({ show, onHide, character
         // Sucesso na atualização
         console.log('Personagem atualizado com sucesso');
         onHide(); // Fechar o modal
+        window.location.reload(); // Recarregar a página para mostrar as atualizações
       } else {
         console.error('Erro ao atualizar personagem');
       }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, ProgressBar } from 'react-bootstrap'; 
 import './CharacterCard.css';
-import CharacterModal from './CharacterModal'; // Certifique-se de importar o modal
+import CharacterModal from './CharacterModal'; 
 
 interface CharacterProps {
   character: {
@@ -23,25 +23,57 @@ const CharacterCard: React.FC<CharacterProps> = ({ character }) => {
 
   const handleCloseModal = () => {
     setModalShow(false);
+    window.location.reload(); 
   };
 
   return (
     <div className="character-card">
       <h2>{character.name}</h2>
-      <img src={character.image} alt={character.name} />
-      <p>Health: {character.health.current}/{character.health.max}</p>
-      <p>Stamina: {character.stamina.current}/{character.stamina.max}</p>
-      <p>Mana: {character.mana.current}/{character.mana.max}</p>
-      <Button variant="primary" onClick={handleEditClick}>
+      <img src={character.image} alt={character.name} className="character-image" />
+      
+      <div className="status-bar">
+        <ProgressBar 
+          now={(character.health.current / character.health.max) * 100} 
+          variant="danger" 
+          animated
+        >
+          <div className="progress-text">
+            {character.health.current}/{character.health.max} HP
+          </div>
+        </ProgressBar>
+      </div>
+      <div className="status-bar">
+        <ProgressBar 
+          now={(character.stamina.current / character.stamina.max) * 100} 
+          variant="warning" 
+          animated
+        >
+          <div className="progress-text">
+            {character.stamina.current}/{character.stamina.max} Stamina
+          </div>
+        </ProgressBar>
+      </div>
+      <div className="status-bar">
+        <ProgressBar 
+          now={(character.mana.current / character.mana.max) * 100} 
+          variant="info" 
+          animated
+        >
+          <div className="progress-text">
+            {character.mana.current}/{character.mana.max} Mana
+          </div>
+        </ProgressBar>
+      </div>
+      
+      <Button variant="primary" onClick={handleEditClick} className="edit-button">
         Editar
       </Button>
       
-      {/* Modal de Edição */}
       <CharacterModal
         show={modalShow}
         onHide={handleCloseModal}
         character={{
-          id: character.id, // Usando id como number
+          id: character.id,
           name: character.name,
           health: character.health,
           stamina: character.stamina,
